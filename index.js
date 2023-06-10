@@ -1,6 +1,8 @@
 // TODO: Include packages needed for this application
+const { generateKeySync } = require('crypto');
 const fs = require('fs');
 const inquire = require('inquirer');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -16,12 +18,17 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Enter installation instructions for your project: ',
+        message: 'Enter installation commands for your project: ',
         name: 'projectInstall'
     },
     {
         type: 'input',
-        message: 'Enter usage instructions for your project: ',
+        message: 'Enter usage commands for your project: ',
+        name: 'useCommands'
+    },
+    {
+        type: 'input',
+        message: 'Enter further usage instructions for your project (Leave blank if none): ',
         name: 'projectUsage'
     },
     {
@@ -31,7 +38,7 @@ const questions = [
     },
     {
         type: 'input',
-        message: 'Enter testing instructions for your project: ',
+        message: 'Enter testing instructions for your project (Leave blank if none): ',
         name: 'projectTest'
     },
     {
@@ -52,11 +59,17 @@ const questions = [
     }
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile(fileName, data);
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    inquire.prompt(questions)
+    .then((data) => {
+        writeToFile('./utils/README.md', generateMarkdown(data));
+    });
+}
 
 // Function call to initialize app
 init();
