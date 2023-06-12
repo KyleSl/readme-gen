@@ -60,7 +60,7 @@ const questions = [
 ];
 
 function writeToFile(fileName, data) {
-    fs.writeFile(fileName, data);
+    fs.writeFile(fileName, data, (err) => {if(err){console.log(err)}});
 }
 
 // TODO: Create a function to initialize app
