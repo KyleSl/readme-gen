@@ -13,6 +13,12 @@ function createLicense (license){
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  let testing = 
+  `## Testing
+  ${data.projectTest}`;
+  if(data.projectTest === ''){
+    testing = '';
+  }
   const template = 
 `${createLicense(data.projectLicense)}
 # ${data.projectName}
@@ -41,7 +47,7 @@ Run the following command to use the program
 ${data.useCommands}
 \`\`\`
 ${data.projectUsage}
-
+${testing}
 ## Contribution
 ${data.projectContr}
 ## Questions/Contact
