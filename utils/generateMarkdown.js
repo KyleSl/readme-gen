@@ -53,7 +53,7 @@ ${data.projectContr}
 ## Questions/Contact
 
 Use the following contact info to ask any questions you might have:
-  - Github: ${data.gitHub}
+  - Github: [${data.gitHub}](https://github.com/${data.gitHub})
   - Email: ${data.email}`;
   return template;
 }
